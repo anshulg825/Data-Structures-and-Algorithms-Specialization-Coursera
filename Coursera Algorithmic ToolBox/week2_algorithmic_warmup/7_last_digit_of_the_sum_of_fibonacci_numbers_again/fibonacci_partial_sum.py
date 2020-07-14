@@ -1,22 +1,45 @@
-# Uses python3
+# Python3 program to calculate 
+# Last Digit of the sum of the 
+# Fibonacci numbers from M to N 
+
+# Calculate the sum of the first 
+# N Fibonacci numbers using Pisano 
+# period 
 import sys
+def fib(n): 
 
-def fibonacci_partial_sum_naive(from_, to):
-    sum = 0
+    # The first two Fibonacci numbers 
+    f0 = 0
+    f1 = 1
 
-    current = 0
-    next  = 1
+    # Base case 
+    if (n == 0): 
+        return 0
+    if (n == 1): 
+        return 1
+    else: 
 
-    for i in range(to + 1):
-        if i >= from_:
-            sum += current
+        # Pisano Period for % 10 is 60 
+        rem = n % 60
 
-        current, next = next, current + next
+        # Checking the remainder 
+        if(rem == 0): 
+            return 0
 
-    return sum % 10
+        # The loop will range from 2 to 
+        # two terms after the remainder 
+        for i in range(2, rem + 3): 
+            f =(f0 + f1)% 60
+            f0 = f1 
+            f1 = f 
 
+        s = f1-1
+        return(s) 
 
-if __name__ == '__main__':
+# Driver code 
+if __name__ == '__main__': 
+
     input = sys.stdin.read();
-    from_, to = map(int, input.split())
-    print(fibonacci_partial_sum_naive(from_, to))
+    m, n = map(int, input.split())    
+    final = fib(n)-fib(m-1) 
+    print(final % 10) 
