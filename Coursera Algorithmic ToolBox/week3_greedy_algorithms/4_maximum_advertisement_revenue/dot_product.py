@@ -2,10 +2,12 @@
 
 import sys
 
-def max_dot_product(a, b):
+def max_dot_product(a, b,n):
     #write your code here
     res = 0
-    for i in range(len(a)):
+    a.sort()
+    b.sort()
+    for i in range(n):
         res += a[i] * b[i]
     return res
 
@@ -15,5 +17,6 @@ if __name__ == '__main__':
     n = data[0]
     a = data[1:(n + 1)]
     b = data[(n + 1):]
-    print(max_dot_product(a, b))
+    print(max_dot_product(a, b,n))
+    
     

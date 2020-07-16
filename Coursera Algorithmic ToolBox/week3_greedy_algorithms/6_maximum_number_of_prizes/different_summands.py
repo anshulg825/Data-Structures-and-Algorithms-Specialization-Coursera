@@ -3,7 +3,16 @@ import sys
 
 def optimal_summands(n):
     summands = []
-    #write your code here
+    k =n
+    l = 1
+    while k>0:
+        if k<=2*l:
+            summands.append(k)
+            k =0
+        else:
+            summands.append(l)
+            k -=l
+        l = l+1
     return summands
 
 if __name__ == '__main__':
