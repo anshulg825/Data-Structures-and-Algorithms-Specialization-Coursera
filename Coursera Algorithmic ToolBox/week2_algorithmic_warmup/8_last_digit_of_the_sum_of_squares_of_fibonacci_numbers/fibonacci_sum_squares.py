@@ -1,19 +1,23 @@
-# Uses python3
-from sys import stdin
+n = int(input())
+lesser_n = n%60
+lesser_nplus = (n+1)%60
 
-def fibonacci_sum_squares(n):
-    if n <= 1:
-        return n
+def fibo(n):
+    a, b = 0, 1
+    for _ in range(2, n+1):
+        c = a+b
+        c = c% 10
+        b, a = c, b
+    return c
 
-    previous = 0
-    current  = 1
-    
-    for i in range(n):
-        previous, current = current, (previous + current)%10
-    sum = ( (previous%10) * (current%10) )     
+if lesser_n<=1:
+    a = lesser_n
+else:
+    a = fibo(lesser_n)
+if lesser_nplus<=1:
+    b = lesser_nplus
+else:
+    b = fibo(lesser_nplus)
 
-    return sum % 10
-
-if __name__ == '__main__':
-    n = int(stdin.read())
-    print(fibonacci_sum_squares(n))
+ 
+print((a*b)%10)
